@@ -4,44 +4,432 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NEXAURON | Team</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-  /* انسخ الـ CSS الأساسي للنافبار والخلفية هنا كما في صفحة الألعاب */
-  body { margin: 0; font-family: 'Segoe UI', sans-serif; background: radial-gradient(circle at top, #0f2027, #000000); color: white; min-height: 100vh; }
-  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: rgba(0, 0, 0, 0.9); border-bottom: 1px solid #00ffd533; }
-  .logo-link { display: flex; align-items: center; text-decoration: none; }
-  .logo-link img { height: 50px; margin-right: 15px; border-radius: 8px; }
-  .logo-link h1 { color: #00ffd5; margin: 0; font-size: 26px; letter-spacing: 2px; }
-  .nav-links { display: flex; gap: 15px; }
-  .nav-links a { color: white; text-decoration: none; font-weight: bold; padding: 10px 25px; border: 2px solid #00ffd5; border-radius: 10px; transition: all 0.3s ease; }
-  .nav-links a:hover { background: #00ffd5; color: black; box-shadow: 0 0 15px rgba(0, 255, 213, 0.5); transform: translateY(-2px); }
+  /* GLOBAL RESET */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   
-  .section { padding: 120px 20px; text-align: center; }
-  .team-box { background: rgba(255, 255, 255, 0.05); border: 1px solid #333; padding: 40px; border-radius: 15px; max-width: 500px; margin: 0 auto; }
+  body { 
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+    background: #050505;
+    color: white; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* PREMIUM BACKGROUND ANIMATION */
+  .bg-wrapper {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% -20%, #1a2a2f, #050505);
+    z-index: -1;
+  }
+
+  /* GLASS NAVBAR */
+  header {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  nav { 
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 18px 25px;
+  }
+  
+  .logo-link { display: flex; align-items: center; text-decoration: none; }
+  .logo-link img { height: 45px; margin-right: 15px; border-radius: 8px; filter: drop-shadow(0 0 10px rgba(0, 255, 213, 0.3)); }
+  .logo-link h1 { color: #fff; margin: 0; font-size: 24px; letter-spacing: 3px; font-weight: 900; }
+  
+  .nav-links { display: flex; gap: 25px; }
+  .nav-links a { 
+    color: rgba(255, 255, 255, 0.7); 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s; 
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover, .nav-links a.active { color: #00ffd5; border-bottom-color: #00ffd5; }
+
+  /* AUTH SECTION */
+  .auth-section {
+    max-width: 1400px;
+    margin: 20px auto 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 25px;
+  }
+
+  .login-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 8px 20px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
+  }
+  .login-card:hover { border-color: #00ffd5; background: rgba(0, 255, 213, 0.05); }
+
+  .auth-btn { background: none; border: none; color: white; cursor: pointer; font-size: 20px; transition: 0.2s; }
+  .auth-btn.google:hover { color: #db4437; }
+  .auth-btn.github:hover { color: #00ffd5; }
+
+  .profile-ui { display: none; align-items: center; gap: 12px; cursor: pointer; }
+  .profile-ui img { width: 42px; height: 42px; border-radius: 50%; border: 2px solid #00ffd5; }
+  .profile-ui span { font-weight: bold; font-size: 14px; }
+
+  .profile-modal {
+    display: none;
+    position: absolute;
+    top: 80px;
+    right: 25px;
+    background: #0a0a0a;
+    border: 1px solid #333;
+    padding: 25px;
+    border-radius: 12px;
+    width: 280px;
+    z-index: 1001;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+  }
+
+  /* PAGE HEADER */
+  .page-header { 
+    text-align: center; 
+    padding: 6vh 20px 2vh; 
+  }
+  .main-title {
+    font-size: clamp(40px, 8vw, 80px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    background: linear-gradient(to bottom, #ffffff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+  .page-desc {
+    font-size: 1.1rem;
+    color: #888;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  /* TEAM SECTION STYLES */
+  .team-container {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+
+  .team-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 350px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .team-card:hover {
+    border-color: #00ffd5;
+    background: rgba(0, 255, 213, 0.03);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  }
+
+  /* Glow effect behind the card on hover */
+  .team-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(0,255,213,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+  .team-card:hover::before { opacity: 1; }
+
+  .team-avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid #333;
+    margin: 0 auto 20px;
+    object-fit: cover;
+    transition: 0.3s;
+    position: relative;
+    z-index: 2;
+  }
+  .team-card:hover .team-avatar { border-color: #00ffd5; box-shadow: 0 0 20px rgba(0, 255, 213, 0.4); }
+
+  .team-name {
+    font-size: 24px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .team-role {
+    font-size: 13px;
+    color: #00ffd5;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .team-details {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+    position: relative;
+    z-index: 2;
+  }
+
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  .detail-item strong { color: #ccc; text-transform: uppercase; font-size: 11px; letter-spacing: 1px;}
+
+  /* FOOTER STYLES */
+  footer { 
+    text-align: center; 
+    padding: 30px; 
+    color: #555; 
+    font-size: 13px; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-content img {
+    height: 25px;
+    border-radius: 4px;
+    filter: grayscale(100%);
+    transition: 0.3s;
+  }
+  .footer-content:hover img { filter: grayscale(0%); box-shadow: 0 0 10px rgba(0, 255, 213, 0.3); }
+
+  @media (max-width: 768px) {
+    nav { flex-direction: column; gap: 20px; }
+    .footer-content { flex-direction: column; }
+  }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="logo-link">
-    <img src="https://tooltop.cloud/img/YZluw8KD" alt="NEXAURON Logo">
-    <h1>NEXAURON</h1>
-  </a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="games.html">Games</a>
-    <a href="team.html">Team</a>
-    <a href="support.html">Support</a>
-  </div>
-</nav>
+<div class="bg-wrapper"></div>
 
-<div class="section">
-  <div class="team-box">
-    <h2 style="font-size: 35px; color: #00ffd5; margin-top: 0;">NEXAURON Team</h2>
-    <div style="font-size: 22px; margin-top: 20px;">
-      <p style="color: #ccc;"><strong>Members:</strong> <span style="color: white;">Muntadhar Raed</span></p>
+<header>
+  <nav>
+    <a href="index.html" class="logo-link">
+      <img src="https://tooltop.cloud/img/YZluw8KD" alt="NEXAURON Logo">
+      <h1>NEXAURON</h1>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="games.html">Games</a>
+      <a href="team.html" class="active">Team</a>
+      <a href="support.html">Support</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="auth-section">
+    <div class="login-card" id="loginUI">
+      <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666;">Account</span>
+      <button class="auth-btn google" id="googleLogin" title="Login with Google"><i class="fab fa-google"></i></button>
+      <button class="auth-btn github" id="githubLogin" title="Login with GitHub"><i class="fab fa-github"></i></button>
+    </div>
+
+    <div class="profile-ui" id="profileUI" onclick="toggleModal()">
+      <span id="displayUserName">...</span>
+      <img id="userPhoto" src="" alt="Profile">
+    </div>
+
+    <div class="profile-modal" id="profileModal">
+      <h3 id="modalName">...</h3>
+      <p style="color: #00ffd5; font-weight: bold; text-transform: uppercase; font-size: 11px; letter-spacing: 1px;">Official Developer</p>
+      <hr style="margin: 15px 0; border: 0; border-top: 1px solid #222;">
+      <p id="userJoinDate"><strong>Joined:</strong> --</p>
+      <button id="logoutBtn" style="width:100%; margin-top:20px; background:#fff; border:none; color:#000; padding:12px; border-radius:8px; cursor:pointer; font-weight:bold; text-transform: uppercase;">Sign Out</button>
     </div>
   </div>
-</div>
+
+  <div class="page-header">
+    <h1 class="main-title">THE TEAM</h1>
+    <p class="page-desc">The visionaries and developers behind NEXAURON's immersive worlds.</p>
+  </div>
+
+  <div class="team-container">
+    
+    <div class="team-card">
+      <img src="https://tooltop.cloud/img/YZluw8KD" alt="Muntadhar Raed" class="team-avatar" style="background:#000; padding: 10px;">
+      
+      <h2 class="team-name">Muntadhar Raed</h2>
+      <p class="team-role">CEO & Studio Director</p>
+      
+      <div class="team-details">
+        <div class="detail-item">
+          <strong>Joined</strong>
+          <span>May 2026</span>
+        </div>
+        <div class="detail-item">
+          <strong>Status</strong>
+          <span style="color: #00ffd5;">Active</span>
+        </div>
+        <div class="detail-item">
+          <strong>Specialty</strong>
+          <span>Game Dev</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card" style="opacity: 0.7;">
+      <img src="https://via.placeholder.com/150/111/333?text=?" alt="Future Member" class="team-avatar" style="border-color: #333;">
+      
+      <h2 class="team-name" style="color: #888;">Unknown</h2>
+      <p class="team-role" style="color: #555;">Lead Designer</p>
+      
+      <div class="team-details">
+        <div class="detail-item">
+          <strong>Joined</strong>
+          <span>--</span>
+        </div>
+        <div class="detail-item">
+          <strong>Status</strong>
+          <span>Recruiting</span>
+        </div>
+        <div class="detail-item">
+          <strong>Specialty</strong>
+          <span>--</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <img src="https://tooltop.cloud/img/YZluw8KD" alt="NEXAURON Icon">
+    <span>© 2026 NEXAURON Studios - All Rights Reserved</span>
+  </div>
+</footer>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAAvZJhoEzwwWeVmUpKzyi-d-Rj7kOH7DE",
+    authDomain: "nexauron-web.firebaseapp.com",
+    projectId: "nexauron-web",
+    storageBucket: "nexauron-web.firebasestorage.app",
+    messagingSenderId: "1043958705578",
+    appId: "1:1043958705578:web:00c6d0bc05dc1bfdca8fd3",
+    measurementId: "G-FBRBXV7259"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+
+  const loginUI = document.getElementById('loginUI');
+  const profileUI = document.getElementById('profileUI');
+  const profileModal = document.getElementById('profileModal');
+  const displayUserName = document.getElementById('displayUserName');
+  const userPhoto = document.getElementById('userPhoto');
+  const modalName = document.getElementById('modalName');
+  const userJoinDate = document.getElementById('userJoinDate');
+
+  document.getElementById('googleLogin').onclick = () => signInWithPopup(auth, googleProvider);
+  document.getElementById('githubLogin').onclick = () => signInWithPopup(auth, githubProvider);
+  document.getElementById('logoutBtn').onclick = () => signOut(auth).then(() => location.reload());
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      loginUI.style.display = 'none';
+      profileUI.style.display = 'flex';
+      displayUserName.innerText = user.displayName;
+      modalName.innerText = user.displayName;
+      userPhoto.src = user.photoURL;
+      const date = new Date(user.metadata.creationTime);
+      userJoinDate.innerHTML = `<strong>Joined:</strong> ${date.toLocaleDateString()}`;
+    } else {
+      loginUI.style.display = 'flex';
+      profileUI.style.display = 'none';
+    }
+  });
+
+  window.toggleModal = () => {
+    profileModal.style.display = (profileModal.style.display === 'block') ? 'none' : 'block';
+  };
+
+  window.onclick = (e) => {
+    if (!e.target.closest('#profileUI') && !e.target.closest('#profileModal')) {
+      profileModal.style.display = 'none';
+    }
+  };
+</script>
 
 </body>
 </html>
