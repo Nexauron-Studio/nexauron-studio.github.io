@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXAURON | نكساورون</title>
+<title>NEXAURON | Gaming Studios</title>
 
 <style>
 body {
@@ -40,7 +40,7 @@ nav {
 
 .logo-link img {
   height: 50px;
-  margin-left: 15px;
+  margin-right: 15px; /* Modified for LTR */
   border-radius: 8px;
 }
 
@@ -53,7 +53,7 @@ nav {
 
 nav div a {
   color:white;
-  margin-right:20px;
+  margin-left:20px; /* Modified for LTR */
   text-decoration:none;
   font-weight: bold;
   transition: 0.3s;
@@ -79,6 +79,8 @@ nav div a:hover {
 .hero p {
   color:#aaa;
   font-size: 24px;
+  max-width: 800px;
+  margin: 10px auto;
 }
 
 /* SECTION */
@@ -157,8 +159,6 @@ nav div a:hover {
   transform: translateY(-3px);
 }
 
-.btn-kofi { background: #FF5E5B; color: white; }
-
 /* FOOTER */
 footer {
   text-align:center;
@@ -168,13 +168,13 @@ footer {
   border-top: 1px solid #111;
 }
 
-.zain-cash-box {
-  background: #1a1a1a;
-  padding: 15px 30px;
-  border-radius: 12px;
-  border: 2px solid #ff0050;
+.email-box {
+  background: rgba(0, 255, 213, 0.05);
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid #00ffd533;
   display: inline-block;
-  margin: 10px;
+  margin-top: 20px;
 }
 </style>
 </head>
@@ -187,66 +187,59 @@ footer {
     <h1>NEXAURON</h1>
   </a>
   <div>
-    <a href="#games">الألعاب</a>
-    <a href="#team">الفريق</a>
-    <a href="#support">الدعم</a>
+    <a href="#games">Games</a>
+    <a href="#team">Team</a>
+    <a href="#support">Support</a>
   </div>
 </nav>
 
 <div class="hero">
   <h1>NEXAURON</h1>
-  <p>نصنع تجارب رعب وبقاء لا تُنسى</p>
+  <p>We bring our games into a perfect atmosphere suitable for everyone.</p>
 </div>
 
 <div id="games" class="section">
-  <h2>🎮 مشاريعنا القادمة</h2>
+  <h2>🎮 Our Games</h2>
   <div class="games">
     
     <div class="card">
       <img src="https://via.placeholder.com/400/200/111/00ffd5?text=Zombie+Fight+Logo" alt="Zombie Fight">
       <h3>Zombie Fight</h3>
-      <p>لعبة رعب وبقاء تأخذك إلى أقصى حدود التوتر. يتم تطويرها باستخدام أحدث تقنيات المحركات.</p>
-      <span class="badge">قيد التطوير 🛠️</span><br>
-      <a class="btn" href="#">قريباً على Steam</a>
+      <p>An intense survival horror experience pushing the boundaries of tension and atmosphere.</p>
+      <span class="badge">In Development 🛠️</span><br>
+      <a class="btn" href="#">Steam Page Soon</a>
     </div>
 
     <div class="card">
-      <img src="https://picsum.photos/400/200?grayscale" alt="Project 2">
-      <h3 style="color: white;">مشروع سري جديد</h3>
-      <p>تجارب جديدة وعوالم مظلمة في مرحلة التخطيط المبدئي.</p>
-      <span class="badge" style="background: #333;">مرحلة التخطيط</span><br>
-      <a class="btn" style="background: #333; color: #777; cursor: not-allowed;" href="#">قيد الانتظار</a>
+      <img src="https://picsum.photos/400/200?grayscale" alt="New Project">
+      <h3>New Secret Project</h3>
+      <p>Exploring new genres and dark worlds. Currently in the early conceptual phase.</p>
+      <span class="badge" style="background: #333;">Planning Stage</span><br>
+      <a class="btn" style="background: #333; color: #777; cursor: not-allowed;" href="#">Pending</a>
     </div>
 
   </div>
 </div>
 
 <div id="team" class="section" style="background: rgba(255,255,255,0.02);">
-  <h2>👥 فريق العمل</h2>
-  <p>المؤسس والمطور الرئيسي: <strong>NEXAURON</strong></p>
+  <h2>👥 Our Team</h2>
+  <div style="font-size: 20px;">
+    <p><strong>Members:</strong> Muntadhar Raed</p>
+  </div>
 </div>
 
 <div id="support" class="section">
-  <h2>☕ ادعم تطوير ألعابنا</h2>
-  <p style="color:#aaa; max-width: 600px; margin: 0 auto 30px;">نكساورون شركة ألعاب مستقلة، دعمك يساهم بشكل مباشر في تسريع عملية التطوير.</p>
+  <h2>✉️ Support & Contact</h2>
+  <p style="color:#aaa; max-width: 600px; margin: 0 auto 10px;">If you encounter any problem, please contact us.</p>
   
-  <div style="display: flex; justify-content: center; flex-wrap: wrap; align-items: center;">
-    
-    <div class="zain-cash-box">
-      <h3 style="color: #ff0050; margin: 0 0 10px 0; font-size: 20px;">زين كاش - Zain Cash</h3>
-      <p style="color: white; font-size: 22px; font-weight: bold; margin: 0; letter-spacing: 2px;">07800000000</p>
-      <p style="color: #777; font-size: 13px; margin: 5px 0 0 0;">(رقم المحفظة للدعم المحلي)</p>
-    </div>
-
-    <a class="btn btn-kofi" href="https://ko-fi.com/YourUsername" target="_blank" style="padding: 22px 30px;">
-      ادعمنا عبر Ko-fi (دولي)
-    </a>
-
+  <div class="email-box">
+    <p style="margin-bottom: 15px; font-size: 18px;">Send us an email:</p>
+    <a class="btn" href="mailto:rmmm54285@Gmail.com">rmmm54285@Gmail.com</a>
   </div>
 </div>
 
 <footer>
-  © 2026 NEXAURON Studios - جميع الحقوق محفوظة
+  © 2026 NEXAURON Studios - All Rights Reserved
 </footer>
 
 </body>
