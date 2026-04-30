@@ -3,123 +3,170 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXAURON | Home</title>
+<title>NEXAURON | Official Studio</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-  /* GLOBAL STYLES */
+  /* GLOBAL RESET */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   
   body { 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    background: radial-gradient(circle at top, #0f2027, #000000); 
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+    background: #050505;
     color: white; 
     min-height: 100vh;
     overflow-x: hidden;
   }
 
-  /* FULL-WIDTH NAVBAR FIX */
+  /* PREMIUM BACKGROUND ANIMATION */
+  .bg-wrapper {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% -20%, #1a2a2f, #050505);
+    z-index: -1;
+  }
+
+  /* GLASS NAVBAR */
   header {
     width: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    border-bottom: 1px solid #00ffd533;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
   }
 
   nav { 
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    padding: 15px 20px;
-    flex-wrap: wrap;
+    padding: 18px 25px;
   }
   
   .logo-link { display: flex; align-items: center; text-decoration: none; }
-  .logo-link img { height: 40px; margin-right: 12px; border-radius: 5px; }
-  .logo-link h1 { color: #00ffd5; margin: 0; font-size: 22px; letter-spacing: 1px; }
+  .logo-link img { height: 45px; margin-right: 15px; border-radius: 8px; filter: drop-shadow(0 0 10px rgba(0, 255, 213, 0.3)); }
+  .logo-link h1 { color: #fff; margin: 0; font-size: 24px; letter-spacing: 3px; font-weight: 900; }
   
-  .nav-links { display: flex; gap: 15px; }
+  .nav-links { display: flex; gap: 25px; }
   .nav-links a { 
-    color: white; 
+    color: rgba(255, 255, 255, 0.7); 
     text-decoration: none; 
-    font-weight: bold; 
-    padding: 8px 15px; 
-    border: 1px solid #00ffd5; 
-    border-radius: 8px; 
-    font-size: 13px;
+    font-weight: 600; 
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     transition: 0.3s; 
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
   }
-  .nav-links a:hover, .nav-links a.active { background: #00ffd5; color: black; box-shadow: 0 0 15px rgba(0, 255, 213, 0.3); }
+  .nav-links a:hover, .nav-links a.active { color: #00ffd5; border-bottom-color: #00ffd5; }
 
   /* AUTH SECTION */
   .auth-section {
-    max-width: 1200px;
-    margin: 15px auto;
+    max-width: 1400px;
+    margin: 20px auto;
     display: flex;
     justify-content: flex-end;
-    padding: 0 20px;
-    position: relative;
+    padding: 0 25px;
   }
 
   .login-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 10px 20px;
-    border-radius: 30px;
-    border: 1px solid #333;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 8px 20px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     gap: 15px;
+    transition: 0.3s;
   }
+  .login-card:hover { border-color: #00ffd5; background: rgba(0, 255, 213, 0.05); }
 
   .auth-btn { background: none; border: none; color: white; cursor: pointer; font-size: 20px; transition: 0.2s; }
-  .auth-btn.google:hover { color: #db4437; transform: scale(1.1); }
-  .auth-btn.github:hover { color: #00ffd5; transform: scale(1.1); }
+  .auth-btn.google:hover { color: #db4437; }
+  .auth-btn.github:hover { color: #00ffd5; }
 
   /* PROFILE UI */
   .profile-ui { display: none; align-items: center; gap: 12px; cursor: pointer; }
-  .profile-ui img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #00ffd5; transition: 0.3s; }
-  .profile-ui img:hover { box-shadow: 0 0 15px rgba(0, 255, 213, 0.5); }
+  .profile-ui img { width: 42px; height: 42px; border-radius: 50%; border: 2px solid #00ffd5; }
   .profile-ui span { font-weight: bold; font-size: 14px; }
 
-  /* MODAL */
   .profile-modal {
     display: none;
     position: absolute;
-    top: 70px;
-    right: 20px;
-    background: #111;
-    border: 1px solid #00ffd5;
+    top: 80px;
+    right: 25px;
+    background: #0a0a0a;
+    border: 1px solid #333;
     padding: 25px;
-    border-radius: 15px;
+    border-radius: 12px;
     width: 280px;
     z-index: 1001;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
   }
 
-  .profile-modal h3 { color: #00ffd5; margin-bottom: 15px; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-  .profile-modal p { margin: 8px 0; font-size: 14px; color: #ccc; }
-  .profile-modal strong { color: white; }
+  /* HERO SECTION (PREMIUM LOOK) */
+  .hero { 
+    text-align: center; 
+    padding: 18vh 20px;
+  }
 
-  /* HERO */
-  .hero { text-align: center; padding: 120px 20px; }
-  .hero h1 { font-size: clamp(45px, 10vw, 80px); color: #00ffd5; margin-bottom: 15px; text-shadow: 0 0 30px rgba(0, 255, 213, 0.4); }
-  .hero p { font-size: 1.2rem; color: #aaa; max-width: 700px; margin: 0 auto; }
+  .main-title {
+    font-size: clamp(60px, 15vw, 120px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    background: linear-gradient(to bottom, #ffffff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
 
-  footer { text-align: center; padding: 40px; color: #444; font-size: 13px; }
+  .hero p {
+    font-size: 1.4rem;
+    color: #888;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .btn-primary {
+    background: #00ffd5;
+    color: #000;
+    padding: 15px 40px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
+  .btn-primary:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 255, 213, 0.2); }
+
+  footer { text-align: center; padding: 60px; color: #444; font-size: 12px; text-transform: uppercase; letter-spacing: 2px;}
 
   @media (max-width: 768px) {
-    nav { flex-direction: column; gap: 15px; }
-    .auth-section { justify-content: center; }
-    .profile-modal { right: 50%; transform: translateX(50%); }
+    nav { flex-direction: column; gap: 20px; }
+    .hero { padding-top: 10vh; }
+    .cta-buttons { flex-direction: column; align-items: center; }
   }
 </style>
 </head>
 <body>
+
+<div class="bg-wrapper"></div>
 
 <header>
   <nav>
@@ -138,39 +185,41 @@
 
 <div class="auth-section">
   <div class="login-card" id="loginUI">
-    <span style="font-size: 14px; color: #888;">Sign in:</span>
-    <button class="auth-btn google" id="googleLogin"><i class="fab fa-google"></i></button>
-    <button class="auth-btn github" id="githubLogin"><i class="fab fa-github"></i></button>
+    <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666;">Account</span>
+    <button class="auth-btn google" id="googleLogin" title="Login with Google"><i class="fab fa-google"></i></button>
+    <button class="auth-btn github" id="githubLogin" title="Login with GitHub"><i class="fab fa-github"></i></button>
   </div>
 
   <div class="profile-ui" id="profileUI" onclick="toggleModal()">
-    <span id="displayUserName">User Name</span>
+    <span id="displayUserName">...</span>
     <img id="userPhoto" src="" alt="Profile">
   </div>
 
   <div class="profile-modal" id="profileModal">
-    <h3 id="modalName">Name</h3>
-    <p><strong>Status:</strong> Member</p>
-    <p><strong>Account:</strong> Verified</p>
-    <p id="userJoinDate"><strong>Joined:</strong> Loading...</p>
-    <button id="logoutBtn" style="width:100%; margin-top:20px; background:#ff0050; border:none; color:white; padding:12px; border-radius:8px; cursor:pointer; font-weight:bold;">Sign Out</button>
+    <h3 id="modalName">...</h3>
+    <p style="color: #00ffd5; font-weight: bold; text-transform: uppercase; font-size: 11px; letter-spacing: 1px;">Official Developer</p>
+    <hr style="margin: 15px 0; border: 0; border-top: 1px solid #222;">
+    <p id="userJoinDate"><strong>Joined:</strong> --</p>
+    <button id="logoutBtn" style="width:100%; margin-top:20px; background:#fff; border:none; color:#000; padding:12px; border-radius:5px; cursor:pointer; font-weight:bold; text-transform: uppercase;">Sign Out</button>
   </div>
 </div>
 
 <div class="hero">
-  <h1>NEXAURON</h1>
-  <p>We bring our games into a perfect atmosphere suitable for everyone.</p>
+  <h1 class="main-title">NEXAURON</h1>
+  <p>Engineering epic worlds and immersive experiences across all genres. From independent visions to global scales.</p>
+  <div class="cta-buttons">
+    <a href="games.html" class="btn-primary">Explore Projects</a>
+  </div>
 </div>
 
 <footer>
-  © 2026 NEXAURON Studios - All Rights Reserved
+  © 2026 NEXAURON Studios - Creating the future of digital entertainment
 </footer>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-  // Your actual Firebase configuration provided by you
   const firebaseConfig = {
     apiKey: "AIzaSyAAvZJhoEzwwWeVmUpKzyi-d-Rj7kOH7DE",
     authDomain: "nexauron-web.firebaseapp.com",
@@ -181,13 +230,11 @@
     measurementId: "G-FBRBXV7259"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
-  // Elements
   const loginUI = document.getElementById('loginUI');
   const profileUI = document.getElementById('profileUI');
   const profileModal = document.getElementById('profileModal');
@@ -196,33 +243,17 @@
   const modalName = document.getElementById('modalName');
   const userJoinDate = document.getElementById('userJoinDate');
 
-  // Google Login Function
-  document.getElementById('googleLogin').onclick = () => {
-    signInWithPopup(auth, googleProvider).catch((error) => console.error(error));
-  };
+  document.getElementById('googleLogin').onclick = () => signInWithPopup(auth, googleProvider);
+  document.getElementById('githubLogin').onclick = () => signInWithPopup(auth, githubProvider);
+  document.getElementById('logoutBtn').onclick = () => signOut(auth).then(() => location.reload());
 
-  // GitHub Login Function
-  document.getElementById('githubLogin').onclick = () => {
-    signInWithPopup(auth, githubProvider).catch((error) => console.error(error));
-  };
-
-  // Logout Function
-  document.getElementById('logoutBtn').onclick = () => {
-    signOut(auth).then(() => location.reload());
-  };
-
-  // Observe Auth State Change
   onAuthStateChanged(auth, (user) => {
     if (user) {
       loginUI.style.display = 'none';
       profileUI.style.display = 'flex';
-      
-      // Setting User Data from Google/GitHub
       displayUserName.innerText = user.displayName;
       modalName.innerText = user.displayName;
-      userPhoto.src = user.photoURL || 'https://via.placeholder.com/100';
-      
-      // Formatting Join Date
+      userPhoto.src = user.photoURL;
       const date = new Date(user.metadata.creationTime);
       userJoinDate.innerHTML = `<strong>Joined:</strong> ${date.toLocaleDateString()}`;
     } else {
@@ -231,14 +262,12 @@
     }
   });
 
-  // Modal Toggle Logic
   window.toggleModal = () => {
     profileModal.style.display = (profileModal.style.display === 'block') ? 'none' : 'block';
   };
 
-  // Close modal when clicking outside
-  window.onclick = (event) => {
-    if (!event.target.closest('#profileUI') && !event.target.closest('#profileModal')) {
+  window.onclick = (e) => {
+    if (!e.target.closest('#profileUI') && !e.target.closest('#profileModal')) {
       profileModal.style.display = 'none';
     }
   };
