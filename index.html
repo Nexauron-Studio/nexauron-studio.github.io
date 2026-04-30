@@ -2,81 +2,170 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NEXAURON</title>
 
 <style>
+
 body {
   margin:0;
-  font-family: Arial;
-  background: #0a0a0a;
-  color:white;
-  text-align:center;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #0f2027, #000000);
+  color: white;
 }
 
-header {
-  padding:60px 20px;
-  background: linear-gradient(45deg,#000,#111);
+/* NAVBAR */
+nav {
+  display:flex;
+  justify-content:space-between;
+  padding:20px;
+  background: rgba(0,0,0,0.7);
+  position:sticky;
+  top:0;
 }
 
-h1 {
-  font-size:40px;
+nav h1 {
   color:#00ffd5;
 }
 
+nav a {
+  color:white;
+  margin-left:15px;
+  text-decoration:none;
+}
+
+/* HERO */
+.hero {
+  text-align:center;
+  padding:100px 20px;
+}
+
+.hero h1 {
+  font-size:60px;
+  color:#00ffd5;
+}
+
+.hero p {
+  color:#aaa;
+  margin-top:10px;
+}
+
+/* SECTION */
 .section {
-  padding:40px;
+  padding:50px 20px;
+  text-align:center;
+}
+
+/* GAME CARDS */
+.games {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 
 .card {
-  background:#1a1a1a;
-  padding:20px;
+  background:#111;
+  margin:15px;
+  width:260px;
+  border-radius:15px;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:scale(1.05);
+}
+
+.card img {
+  width:100%;
+}
+
+.card h3 {
   margin:10px;
-  border-radius:10px;
-  display:inline-block;
-  width:250px;
+}
+
+.card p {
+  color:#aaa;
 }
 
 .btn {
+  display:inline-block;
+  margin:10px;
+  padding:10px 15px;
   background:#00ffd5;
   color:black;
-  padding:10px 15px;
   border-radius:8px;
-  display:inline-block;
-  margin-top:10px;
   text-decoration:none;
 }
+
+/* FOOTER */
+footer {
+  text-align:center;
+  padding:20px;
+  background:#000;
+  color:#777;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>NEXAURON</h1>
-<p>Future Game Studio</p>
-</header>
+<!-- NAVBAR -->
+<nav>
+  <h1>NEXAURON</h1>
+  <div>
+    <a href="#">Games</a>
+    <a href="#">Team</a>
+    <a href="#">Support</a>
+  </div>
+</nav>
 
+<!-- HERO -->
+<div class="hero">
+  <h1>NEXAURON</h1>
+  <p>Future of Gaming Starts Here</p>
+</div>
+
+<!-- GAMES -->
 <div class="section">
-<h2>🎮 Games</h2>
+  <h2>🎮 Our Games</h2>
 
-<div class="card">
-<h3>My First Game</h3>
-<p>Coming Soon</p>
+  <div class="games">
+
+    <div class="card">
+      <img src="https://picsum.photos/300/200">
+      <h3>Game One</h3>
+      <p>Coming Soon</p>
+      <a class="btn" href="#">Play</a>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/301/200">
+      <h3>Game Two</h3>
+      <p>Coming Soon</p>
+      <a class="btn" href="#">Play</a>
+    </div>
+
+  </div>
 </div>
 
-</div>
-
+<!-- TEAM -->
 <div class="section">
-<h2>👤 Team</h2>
-<div class="card">
-<p>Developer: You</p>
-</div>
+  <h2>👥 Team</h2>
+  <p>Founder: You</p>
 </div>
 
+<!-- SUPPORT -->
 <div class="section">
-<h2>☕ Support</h2>
-<p>Support our journey</p>
-<a class="btn" href="#">Donate</a>
+  <h2>☕ Support Us</h2>
+  <a class="btn" href="#">Donate</a>
 </div>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 NEXAURON - All Rights Reserved
+</footer>
 
 </body>
 </html>
