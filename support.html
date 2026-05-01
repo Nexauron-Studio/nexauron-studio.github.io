@@ -82,6 +82,7 @@
     display: flex;
     justify-content: flex-end;
     padding: 0 25px;
+    position: relative;
   }
 
   .login-card {
@@ -92,13 +93,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    transition: 0.3s;
   }
-  .login-card:hover { border-color: #00ffd5; background: rgba(0, 255, 213, 0.05); }
-
-  .auth-btn { background: none; border: none; color: white; cursor: pointer; font-size: 20px; transition: 0.2s; }
-  .auth-btn.google:hover { color: #db4437; }
-  .auth-btn.github:hover { color: #00ffd5; }
 
   .profile-ui { display: none; align-items: center; gap: 12px; cursor: pointer; }
   .profile-ui img { width: 42px; height: 42px; border-radius: 50%; border: 2px solid #00ffd5; }
@@ -118,30 +113,18 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.8);
   }
 
-  /* PAGE HEADER */
-  .page-header { 
-    text-align: center; 
-    padding: 4vh 20px 2vh; 
-  }
+  /* PAGE CONTENT */
+  .page-header { text-align: center; padding: 6vh 20px 2vh; }
   .main-title {
     font-size: clamp(40px, 8vw, 75px);
     font-weight: 900;
-    letter-spacing: -2px;
     background: linear-gradient(to bottom, #ffffff, #888);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 10px;
     display: inline-block;
   }
-  .page-desc {
-    font-size: 1.1rem;
-    color: #aaa;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
 
-  /* CHARISMATIC SUPPORT CARDS */
   .support-container {
     max-width: 1200px;
     margin: 40px auto 60px;
@@ -161,48 +144,19 @@
     width: 350px;
     text-align: center;
     transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
-  .support-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-  }
+  .support-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+  .card-zain:hover { border-color: #ff0050; }
+  .card-crypto:hover { border-color: #f7931a; }
 
-  /* Glow specific to cards */
-  .card-zain:hover { border-color: #ff0050; box-shadow: 0 10px 40px rgba(255, 0, 80, 0.2); }
-  .card-kofi:hover { border-color: #00ffd5; box-shadow: 0 10px 40px rgba(0, 255, 213, 0.2); }
-  .card-contact:hover { border-color: #aaa; }
+  .support-icon { font-size: 45px; margin-bottom: 20px; }
+  .card-zain .support-icon { color: #ff0050; }
+  .card-crypto .support-icon { color: #f7931a; }
 
-  .support-icon {
-    font-size: 45px;
-    margin-bottom: 20px;
-  }
-  .card-zain .support-icon { color: #ff0050; text-shadow: 0 0 20px rgba(255, 0, 80, 0.5); }
-  .card-kofi .support-icon { color: #00ffd5; text-shadow: 0 0 20px rgba(0, 255, 213, 0.5); }
-  .card-contact .support-icon { color: #fff; }
-
-  .support-title {
-    font-size: 22px;
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .support-text {
-    font-size: 14px;
-    color: #aaa;
-    margin-bottom: 30px;
-    line-height: 1.6;
-  }
-
-  /* The Charismatic Buttons / Numbers */
   .action-btn {
     display: block;
     width: 100%;
@@ -210,96 +164,25 @@
     border-radius: 10px;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-decoration: none;
     transition: 0.3s;
     border: none;
     cursor: pointer;
   }
 
-  .btn-kofi {
-    background: rgba(0, 255, 213, 0.1);
-    color: #00ffd5;
-    border: 1px solid #00ffd5;
-  }
-  .btn-kofi:hover { background: #00ffd5; color: #000; box-shadow: 0 0 20px rgba(0, 255, 213, 0.5); }
+  .zain-number { background: rgba(255, 0, 80, 0.1); color: #ff0050; border: 1px solid #ff0050; font-size: 18px; }
+  .zain-number:hover { background: #ff0050; color: #fff; }
 
-  .zain-number {
-    background: rgba(255, 0, 80, 0.1);
-    color: #ff0050;
-    border: 1px solid #ff0050;
-    font-size: 20px;
-    letter-spacing: 3px;
-    user-select: all; /* يسهل النسخ */
-  }
-  .zain-number:hover { background: #ff0050; color: #fff; box-shadow: 0 0 20px rgba(255, 0, 80, 0.5); }
+  .crypto-address { background: rgba(247, 147, 26, 0.1); color: #f7931a; border: 1px solid #f7931a; font-size: 13px; }
+  .crypto-address:hover { background: #f7931a; color: #fff; }
 
-  .btn-contact {
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  .btn-contact:hover { background: #fff; color: #000; }
-
-  /* SECTION DIVIDER */
-  .section-divider {
-    width: 100%;
-    text-align: center;
-    margin: 20px 0;
-    position: relative;
-  }
-  .section-divider::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 10%; width: 30%; height: 1px;
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.1));
-  }
-  .section-divider::after {
-    content: '';
-    position: absolute;
-    top: 50%; right: 10%; width: 30%; height: 1px;
-    background: linear-gradient(to left, transparent, rgba(255,255,255,0.1));
-  }
-  .section-divider span {
-    color: #555;
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-size: 12px;
-  }
-
-  /* FOOTER STYLES */
   footer { 
     text-align: center; 
     padding: 30px; 
     color: #555; 
     font-size: 13px; 
-    text-transform: uppercase; 
-    letter-spacing: 1px;
     border-top: 1px solid rgba(255,255,255,0.05);
     background: rgba(0,0,0,0.5);
     width: 100%;
-  }
-
-  .footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .footer-content img {
-    height: 25px;
-    border-radius: 4px;
-    filter: grayscale(100%);
-    transition: 0.3s;
-  }
-  .footer-content:hover img { filter: grayscale(0%); box-shadow: 0 0 10px rgba(0, 255, 213, 0.3); }
-
-  @media (max-width: 768px) {
-    nav { flex-direction: column; gap: 20px; }
-    .footer-content { flex-direction: column; }
-    .section-divider::before, .section-divider::after { display: none; }
   }
 </style>
 </head>
@@ -325,86 +208,51 @@
 <main>
   <div class="auth-section">
     <div class="login-card" id="loginUI">
-      <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666;">Account</span>
-      <button class="auth-btn google" id="googleLogin" title="Login with Google"><i class="fab fa-google"></i></button>
-      <button class="auth-btn github" id="githubLogin" title="Login with GitHub"><i class="fab fa-github"></i></button>
+      <span style="font-size: 11px; text-transform: uppercase; color: #666; letter-spacing: 1px;">Account</span>
+      <button style="background:none; border:none; color:white; cursor:pointer; margin-left:10px; font-size: 18px;" id="googleLogin"><i class="fab fa-google"></i></button>
     </div>
-
     <div class="profile-ui" id="profileUI" onclick="toggleModal()">
       <span id="displayUserName">...</span>
       <img id="userPhoto" src="" alt="Profile">
     </div>
-
     <div class="profile-modal" id="profileModal">
       <h3 id="modalName">...</h3>
-      <p style="color: #00ffd5; font-weight: bold; text-transform: uppercase; font-size: 11px; letter-spacing: 1px;">Official Developer</p>
-      <hr style="margin: 15px 0; border: 0; border-top: 1px solid #222;">
-      <p id="userJoinDate"><strong>Joined:</strong> --</p>
-      <button id="logoutBtn" style="width:100%; margin-top:20px; background:#fff; border:none; color:#000; padding:12px; border-radius:8px; cursor:pointer; font-weight:bold; text-transform: uppercase;">Sign Out</button>
+      <p style="color: #00ffd5; font-weight: bold; font-size: 11px; text-transform: uppercase;">Official Developer</p>
+      <button id="logoutBtn" style="width:100%; margin-top:20px; background:#fff; color:#000; padding:10px; border-radius:5px; cursor:pointer; font-weight:bold; text-transform: uppercase;">Sign Out</button>
     </div>
   </div>
 
   <div class="page-header">
     <h1 class="main-title">SUPPORT NEXAURON</h1>
-    <p class="page-desc">Help us push the boundaries of independent gaming. Your support fuels our engine, servers, and creative vision.</p>
+    <p class="page-desc">Your backing helps us create more immersive worlds. Choose your preferred method below.</p>
   </div>
 
   <div class="support-container">
-    
     <div class="support-card card-zain">
       <div>
         <i class="fas fa-wallet support-icon"></i>
-        <h2 class="support-title">Local Backer</h2>
-        <p class="support-text">Directly support our studio's hardware and development from inside Iraq using Zain Cash.</p>
+        <h2 style="font-size:20px; margin-bottom:10px;">Zain Cash</h2>
+        <p style="font-size:14px; color:#888; margin-bottom:20px;">Support us locally via Zain Cash transfer.</p>
       </div>
-      <div class="action-btn zain-number" title="Click to copy" onclick="navigator.clipboard.writeText('07800000000'); alert('Number Copied!');">
-        0780 000 0000
-      </div>
+      <button class="action-btn zain-number" onclick="navigator.clipboard.writeText('07800000000'); alert('Zain Cash Number Copied!');">0780 000 0000</button>
     </div>
 
-    <div class="support-card card-kofi">
+    <div class="support-card card-crypto">
       <div>
-        <i class="fas fa-coffee support-icon"></i>
-        <h2 class="support-title">Global Backer</h2>
-        <p class="support-text">Join our international supporters. Buy the devs a coffee or fund specific engine assets.</p>
+        <i class="fab fa-bitcoin support-icon"></i>
+        <h2 style="font-size:20px; margin-bottom:10px;">Crypto (USDT)</h2>
+        <p style="font-size:14px; color:#888; margin-bottom:20px;">Support us globally using USDT (TRC20 network).</p>
       </div>
-      <a href="https://ko-fi.com/YourUsername" target="_blank" class="action-btn btn-kofi">
-        Support via Ko-fi
-      </a>
+      <button class="action-btn crypto-address" onclick="navigator.clipboard.writeText('TSNQ3CBxadxgQaR9GQij1eKLm8wr5x5Brw'); alert('Crypto Address Copied!');">Copy Wallet Address</button>
     </div>
-
-  </div>
-
-  <div class="section-divider">
-    <span>Or Contact Us Directly</span>
-  </div>
-
-  <div class="support-container" style="margin-top: 20px;">
-    
-    <div class="support-card card-contact">
-      <div>
-        <i class="fas fa-envelope-open-text support-icon"></i>
-        <h2 class="support-title">Business & Inquiries</h2>
-        <p class="support-text">Have a technical issue, bug report, or a business proposition? Drop us an official email.</p>
-      </div>
-      <a href="mailto:rmmm54285@Gmail.com" class="action-btn btn-contact">
-        rmmm54285@Gmail.com
-      </a>
-    </div>
-
   </div>
 </main>
 
-<footer>
-  <div class="footer-content">
-    <img src="https://tooltop.cloud/img/YZluw8KD" alt="NEXAURON Icon">
-    <span>© 2026 NEXAURON Studios - All Rights Reserved</span>
-  </div>
-</footer>
+<footer>© 2026 NEXAURON Studios - All Rights Reserved</footer>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAAvZJhoEzwwWeVmUpKzyi-d-Rj7kOH7DE",
@@ -418,46 +266,25 @@
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
-  const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
+  const provider = new GoogleAuthProvider();
 
-  const loginUI = document.getElementById('loginUI');
-  const profileUI = document.getElementById('profileUI');
-  const profileModal = document.getElementById('profileModal');
-  const displayUserName = document.getElementById('displayUserName');
-  const userPhoto = document.getElementById('userPhoto');
-  const modalName = document.getElementById('modalName');
-  const userJoinDate = document.getElementById('userJoinDate');
-
-  document.getElementById('googleLogin').onclick = () => signInWithPopup(auth, googleProvider);
-  document.getElementById('githubLogin').onclick = () => signInWithPopup(auth, githubProvider);
+  document.getElementById('googleLogin').onclick = () => signInWithPopup(auth, provider);
   document.getElementById('logoutBtn').onclick = () => signOut(auth).then(() => location.reload());
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      loginUI.style.display = 'none';
-      profileUI.style.display = 'flex';
-      displayUserName.innerText = user.displayName;
-      modalName.innerText = user.displayName;
-      userPhoto.src = user.photoURL;
-      const date = new Date(user.metadata.creationTime);
-      userJoinDate.innerHTML = `<strong>Joined:</strong> ${date.toLocaleDateString()}`;
-    } else {
-      loginUI.style.display = 'flex';
-      profileUI.style.display = 'none';
+      document.getElementById('loginUI').style.display = 'none';
+      document.getElementById('profileUI').style.display = 'flex';
+      document.getElementById('displayUserName').innerText = user.displayName;
+      document.getElementById('modalName').innerText = user.displayName;
+      document.getElementById('userPhoto').src = user.photoURL;
     }
   });
 
   window.toggleModal = () => {
-    profileModal.style.display = (profileModal.style.display === 'block') ? 'none' : 'block';
-  };
-
-  window.onclick = (e) => {
-    if (!e.target.closest('#profileUI') && !e.target.closest('#profileModal')) {
-      profileModal.style.display = 'none';
-    }
+    const m = document.getElementById('profileModal');
+    m.style.display = m.style.display === 'block' ? 'none' : 'block';
   };
 </script>
-
 </body>
 </html>
