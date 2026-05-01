@@ -1,0 +1,61 @@
+here<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXAURON | Analytics</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  body {
+    background: #050505; color: #00ffd5; font-family: 'Courier New', Courier, monospace;
+    display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;
+  }
+  .dashboard {
+    background: rgba(0, 255, 213, 0.05); border: 1px solid rgba(0, 255, 213, 0.2);
+    padding: 50px; border-radius: 15px; text-align: center; box-shadow: 0 0 30px rgba(0, 255, 213, 0.1);
+  }
+  h1 { font-size: 24px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px; color: #fff;}
+  .view-count { font-size: 80px; font-weight: bold; margin: 20px 0; text-shadow: 0 0 20px rgba(0, 255, 213, 0.5); }
+  .status { font-size: 14px; color: #888; }
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+  <i class="fas fa-satellite-dish" style="font-size: 40px; margin-bottom: 20px;"></i>
+  <h1>NEXAURON Network</h1>
+  <div class="status">LIVE UNIQUE VISITORS</div>
+  <div class="view-count" id="countDisplay">--</div>
+  <div class="status" id="lastSync">Syncing with server...</div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAAvZJhoEzwwWeVmUpKzyi-d-Rj7kOH7DE",
+    authDomain: "nexauron-web.firebaseapp.com",
+    projectId: "nexauron-web",
+    storageBucket: "nexauron-web.firebasestorage.app",
+    messagingSenderId: "1043958705578",
+    appId: "1:1043958705578:web:00c6d0bc05dc1bfdca8fd3"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const statsRef = doc(db, "analytics", "views");
+  onSnapshot(statsRef, (docSnap) => {
+    if (docSnap.exists()) {
+      document.getElementById('countDisplay').innerText = docSnap.data().count;
+      document.getElementById('lastSync').innerText = "Status: Secure | Last Sync: " + new Date().toLocaleTimeString();
+    } else {
+      document.getElementById('countDisplay').innerText = "0";
+      document.getElementById('lastSync').innerText = "Awaiting first visitor...";
+    }
+  });
+</script>
+
+</body>
+</html>
