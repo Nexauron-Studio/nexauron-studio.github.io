@@ -1,33 +1,108 @@
-here<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NEXAURON | Analytics</title>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-  body {
-    background: #050505; color: #00ffd5; font-family: 'Courier New', Courier, monospace;
-    display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body { 
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+    background: #050505; color: white; min-height: 100vh;
+    display: flex; flex-direction: column; overflow-x: hidden;
   }
-  .dashboard {
-    background: rgba(0, 255, 213, 0.05); border: 1px solid rgba(0, 255, 213, 0.2);
-    padding: 50px; border-radius: 15px; text-align: center; box-shadow: 0 0 30px rgba(0, 255, 213, 0.1);
+
+  .bg-wrapper {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% -20%, #1a2a2f, #050505);
+    z-index: -1;
   }
-  h1 { font-size: 24px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px; color: #fff;}
-  .view-count { font-size: 80px; font-weight: bold; margin: 20px 0; text-shadow: 0 0 20px rgba(0, 255, 213, 0.5); }
-  .status { font-size: 14px; color: #888; }
+
+  header {
+    width: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); position: sticky; top: 0; z-index: 1000;
+  }
+
+  nav { 
+    max-width: 1400px; margin: 0 auto; display: flex; 
+    justify-content: space-between; align-items: center; padding: 18px 25px;
+  }
+  
+  .logo-link { display: flex; align-items: center; text-decoration: none; }
+  .logo-link img { height: 45px; margin-right: 15px; border-radius: 8px; filter: drop-shadow(0 0 10px rgba(0, 255, 213, 0.3)); }
+  .logo-link h1 { color: #fff; margin: 0; font-size: 24px; letter-spacing: 3px; font-weight: 900; }
+
+  .nav-links { display: flex; gap: 25px; }
+  .nav-links a { 
+    color: rgba(255, 255, 255, 0.7); text-decoration: none; font-weight: 600; 
+    font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+  }
+  .nav-links a:hover { color: #00ffd5; }
+
+  main {
+    flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px;
+  }
+
+  .stats-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 255, 213, 0.2);
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+  }
+
+  .stats-card h2 {
+    font-size: 14px; text-transform: uppercase; letter-spacing: 5px; color: #00ffd5; margin-bottom: 30px; font-weight: 900;
+  }
+
+  .view-number {
+    font-size: 100px; font-weight: 900; background: linear-gradient(to bottom, #fff, #666);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;
+  }
+
+  .label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 2px; }
+
+  footer { 
+    text-align: center; padding: 30px; color: #444; font-size: 12px; text-transform: uppercase;
+    background: rgba(0,0,0,0.5); width: 100%;
+  }
 </style>
 </head>
 <body>
 
-<div class="dashboard">
-  <i class="fas fa-satellite-dish" style="font-size: 40px; margin-bottom: 20px;"></i>
-  <h1>NEXAURON Network</h1>
-  <div class="status">LIVE UNIQUE VISITORS</div>
-  <div class="view-count" id="countDisplay">--</div>
-  <div class="status" id="lastSync">Syncing with server...</div>
-</div>
+<div class="bg-wrapper"></div>
+
+<header>
+  <nav>
+    <div class="logo-link">
+      <img src="https://tooltop.cloud/img/YZluw8KD" alt="NEXAURON Logo">
+      <h1>NEXAURON</h1>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Back to Site</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="stats-card">
+    <h2>Views Counter</h2>
+    <div class="view-number" id="countDisplay">--</div>
+    <div class="label" id="statusText">Syncing with NEXAURON Core...</div>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 NEXAURON Studios | Admin Analytics Portal</span>
+</footer>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -49,10 +124,7 @@ here<!DOCTYPE html>
   onSnapshot(statsRef, (docSnap) => {
     if (docSnap.exists()) {
       document.getElementById('countDisplay').innerText = docSnap.data().count;
-      document.getElementById('lastSync').innerText = "Status: Secure | Last Sync: " + new Date().toLocaleTimeString();
-    } else {
-      document.getElementById('countDisplay').innerText = "0";
-      document.getElementById('lastSync').innerText = "Awaiting first visitor...";
+      document.getElementById('statusText').innerText = "Live System Status: Stable";
     }
   });
 </script>
